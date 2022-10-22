@@ -3,6 +3,12 @@ package root.credentials;
 import com.squareup.moshi.Moshi;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public final class CredentialsJPanel extends JPanel {
 
@@ -11,7 +17,37 @@ public final class CredentialsJPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         JPanel titlePanel = new JPanel();
-        JLabel credentialsLabel = new JLabel("CREDENTIALS");
+        JLabel credentialsLabel = new JLabel("CREDENTIALS (?)");
+        credentialsLabel.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URL("https://www.expensify.com/tools/integrations/").toURI());
+                } catch (IOException | URISyntaxException ex) {
+                    ex.printStackTrace(System.err);
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
         titlePanel.add(credentialsLabel);
         add(titlePanel);
 
