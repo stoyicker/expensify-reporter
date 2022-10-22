@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 repositories {
@@ -8,4 +9,16 @@ repositories {
 
 dependencies {
 
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes "Main-Class": "root.Main"
+    }
+    setArchivesBaseName(rootProject.name)
+    from {
+        configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with jar
 }
