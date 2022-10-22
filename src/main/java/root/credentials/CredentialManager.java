@@ -25,7 +25,7 @@ public final class CredentialManager {
 
     public void writeCredentials(Credentials credentials) {
         try {
-            Files.writeString(STORAGE_CREDENTIALS, jsonAdapter.toJson(credentials));
+            Files.writeString(STORAGE_CREDENTIALS, jsonAdapter.indent("  ").toJson(credentials));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

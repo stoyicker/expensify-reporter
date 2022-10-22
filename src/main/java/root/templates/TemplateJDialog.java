@@ -32,6 +32,10 @@ public final class TemplateJDialog extends JDialog {
         JLabel nameLabel = new JLabel("Name: ");
         JTextField nameField = new JTextField(15);
         nameField.setHorizontalAlignment(JPasswordField.CENTER);
+        if (prefillTemplateNameIfPossible && referenceTemplate != null) {
+            nameField.setText(referenceTemplate.name);
+            nameField.setEnabled(false);
+        }
         namePanel.add(nameLabel);
         namePanel.add(nameField);
         add(namePanel);
@@ -94,7 +98,7 @@ public final class TemplateJDialog extends JDialog {
         JTextField descriptionPrefixField = new JTextField(15);
         merchantField.setHorizontalAlignment(JPasswordField.CENTER);
         if (referenceTemplate != null) {
-            descriptionPrefixField.setText(referenceTemplate.category);
+            descriptionPrefixField.setText(referenceTemplate.descriptionPrefix);
         }
         descriptionPrefixPanel.add(descriptionPrefixLabel);
         descriptionPrefixPanel.add(descriptionPrefixField);
