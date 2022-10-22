@@ -9,6 +9,16 @@ public final class Template {
     public final String category;
     public final String descriptionPrefix;
 
+    private Template() {
+        name = "";
+        merchant = null;
+        currency = null;
+        isReimbursable = false;
+        isBillable = false;
+        category = null;
+        descriptionPrefix = null;
+    }
+
     public Template(
             String name,
             String merchant,
@@ -17,8 +27,8 @@ public final class Template {
             Boolean isBillable,
             String category, String descriptionPrefix
     ) {
-        if (name == null) {
-            throw new IllegalArgumentException("name cannot be null");
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("name cannot be null or empty");
         }
         this.name = name;
         this.merchant = merchant;
@@ -44,4 +54,11 @@ public final class Template {
         }
         return name.contentEquals(((Template) obj).name);
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    static Template NULL = new Template();
 }

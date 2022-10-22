@@ -2,6 +2,7 @@ package root;
 
 import com.squareup.moshi.Moshi;
 import root.credentials.CredentialsJPanel;
+import root.templates.TemplatesJPanel;
 
 import javax.swing.*;
 import java.nio.file.Path;
@@ -12,8 +13,11 @@ public final class Main {
         STORAGE_ROOT.toFile().mkdirs();
         JFrame jFrame = new JFrame();
         Moshi moshi = new Moshi.Builder().build();
-        jFrame.add(new CredentialsJPanel(moshi));
+        JPanel rootPanel = new JPanel();
+        rootPanel.add(new CredentialsJPanel(moshi));
+        rootPanel.add(new TemplatesJPanel(moshi));
 
+        jFrame.add(rootPanel);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setTitle("Expense generator");
         jFrame.pack();

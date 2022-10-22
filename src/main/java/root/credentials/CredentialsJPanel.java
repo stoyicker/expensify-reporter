@@ -16,24 +16,26 @@ public final class CredentialsJPanel extends JPanel {
         add(titlePanel);
 
         JPanel partnerUserIDPanel = new JPanel();
-        JPasswordField partnerUserIDField = new JPasswordField();
+        JPasswordField partnerUserIDField = new JPasswordField(15);
         partnerUserIDField.setEchoChar('*');
+        partnerUserIDField.setHorizontalAlignment(JPasswordField.CENTER);
         JLabel partnerUserIDLabel = new JLabel("partnerUserID: ");
         partnerUserIDPanel.add(partnerUserIDLabel);
         partnerUserIDPanel.add(partnerUserIDField);
         add(partnerUserIDPanel);
 
         JPanel partnerUserSecretPanel = new JPanel();
-        JPasswordField partnerUserSecretField = new JPasswordField();
+        JPasswordField partnerUserSecretField = new JPasswordField(15);
         partnerUserSecretField.setEchoChar('*');
+        partnerUserSecretField.setHorizontalAlignment(JPasswordField.CENTER);
         JLabel partnerUserSecretLabel = new JLabel("partnerUserSecret: ");
         partnerUserSecretPanel.add(partnerUserSecretLabel);
         partnerUserSecretPanel.add(partnerUserSecretField);
         add(partnerUserSecretPanel);
 
         JPanel partnerEmployeeEmailPanel = new JPanel();
-        JTextField employeeEmailField = new JTextField();
-        partnerUserSecretField.setEchoChar('*');
+        JTextField employeeEmailField = new JTextField(15);
+        employeeEmailField.setHorizontalAlignment(JPasswordField.CENTER);
         JLabel employeeEmailLabel = new JLabel("Employee e-mail: ");
         partnerEmployeeEmailPanel.add(employeeEmailLabel);
         partnerEmployeeEmailPanel.add(employeeEmailField);

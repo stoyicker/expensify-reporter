@@ -22,25 +22,33 @@ public final class TemplateManager {
             return jsonAdapter.fromJson(Files.readString(STORAGE_TEMPLATES));
         } catch (IOException e) {
             e.printStackTrace(System.err);
-            return new HashSet<>();
+            Set<Template> ret = new HashSet<>();
+            ret.add(Template.NULL);
+            return ret;
         }
     }
 
     public void addOrUpdateTemplate(Template template) {
+        if (Template.NULL.equals(template)) {
+            return;
+        }
         try {
             Set<Template> toWrite = readTemplates();
             toWrite.add(template);
-            Files.writeString(STORAGE_TEMPLATES, jsonAdapter.toJson(toWrite));
+            Files.writeString(STORAGE_TEMPLATES, jsonAdapter.indent("  ").toJson(toWrite));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     public void deleteTemplate(String templateName) {
+        if (Template.NULL.name.contentEquals(templateName)) {
+            return;
+        }
         try {
             Set<Template> toWrite = readTemplates();
             toWrite.removeIf(template -> template.name.contentEquals(templateName));
-            Files.writeString(STORAGE_TEMPLATES, jsonAdapter.toJson(toWrite));
+            Files.writeString(STORAGE_TEMPLATES, jsonAdapter.indent("  ").toJson(toWrite));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
